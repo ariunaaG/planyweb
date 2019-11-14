@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Plany | Home</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				var idNumber;
+				$('.okButton').hide();
+				$('.dayLessonSchedule').click(function(event) {
+					var isNameInputCorrect,
+						isCodeInputCorrect = false;
+					if (event.target === this) {
+						/* тухайн хичээлийн цаг дээр дарахад хичээл бичих талбар болон хувирна*/
+						var div = $('#' + event.target.id);
+						div.animate({ height: '120px', opacity: '1' }, 'slow');
+						div.animate({ width: '250px', opacity: '1' }, 'slow');
+						div.animate({ bottom: '50px', opacity: '1' }, 'slow');
+						div.css({
+							'background-color': ' #E5E8E8',
+							border: '0px',
+							'-webkit-box-shadow': '0px 0px 15px -2px #99A3A4',
+						});
+						$('#lesson-type-div').css({ display: 'block' });
+						$('#lesson-type-div').fadeIn();
+
+						var id = event.target.id.toString();
+						idNumber = id.substr(id.length - 1, id.length);
+
+						var nameInput = $('#lessonNameInput' + idNumber.toString());
+						var codeInput = $('#lessonCodeInput' + idNumber.toString());
+						$('#lessonColor' + idNumber).css('background-color', 'white');
+						codeInput.css({ border: 'none' });
+						nameInput.css({ border: 'none' });
+						$('#dayLessonSchedule7').css({ display: 'none' });
+
+						nameInput.keyup(function() {
+							if (nameInput.val().length < 5) {
+								nameInput.css({
+									'-webkit-box-shadow': '0px 0px 1px -2px rgb(245, 15, 36)',
+									'box-shadow': '0px 0px 10px -2px rgb(245, 15, 36)',
+								});
+							} else
+								nameInput.css({
+									'-webkit-box-shadow': '0px 0px 1px -2px rgb(31, 199, 18)',
+									'box-shadow': '0px 0px 10px -2px rgb(31, 199, 18)',
+								});
+						});
+
+						codeInput.keyup(function() {
+							if (codeInput.val().length == 7) {
+								codeInput.css({
+									'-webkit-box-shadow': '0px 0px 10px -2px rgb(31, 199, 18)',
+									'box-shadow': '0px 0px 10px -2px rgb(31, 199, 18)',
+								});
+							} else
+								codeInput.css({
+									'-webkit-box-shadow': '0px 0px 10px -2px rgb(245, 15, 36)',
+									'box-shadow': '0px 0px 10px -2px rgb(245, 15, 36)',
+								});
+						});
+						var idNumberBadge;
+						//	console.log('#badge' + idNumber);
+						$('.lesson-type-badge').click(function(event) {
+							// console.log(event.target.id.toString());
+							var id = event.target.id.toString();
+							idNumberBadge = id.substr(id.length - 1, id.length);
+							console.log(idNumberBadge);
+							var badge = $('#' + id);
+							badge.css({
+								'background-color': 'blue',
+								'-webkit-box-shadow': '0px 0px 10px -2px blue',
+								'box-shadow': '0px 0px 10px -2px blue',
+							});
+							for (var i = 1; i <= 4; i++) {
+								if (idNumberBadge != i) {
+									$('#badge' + i.toString()).css({
+										'background-color': 'white',
+										'-webkit-box-shadow': 'none',
+										'box-shadow': 'none',
+									});
+								}
+							}
+						});
+
+						/**  ok button*/
+						var buttonId = '#okButton' + idNumber.toString();
+						console.log(buttonId);
+						var okButton = $(buttonId);
+						// okButton.show();
+					}
+				});
+			});
+
+			//   document.write(Date());
+		</script>
+	</head>
+
+	<body>
+		<div id="container">
+			<div id="left-menu"></div>
+
+			<div id="right-side">
+				<div id="dayLessonScheduleDiv">
+					<div class="dayLessonSchedule" id="dayLessonSchedule1">
+						<div class="lessonColor" id="lessonColor1"></div>
+						<input type="text" class="lessonNameInput" id="lessonNameInput1" placeholder="Нэр" />
+						<input class="lessonCodeInput" id="lessonCodeInput1" placeholder="Код" type="text" /><br />
+						<div id="lesson-type-div">
+							<div class="lesson-type-badge" id="badge1"></div>
+							<div class="lesson-type-badge" id="badge2"></div>
+							<div class="lesson-type-badge" id="badge3"></div>
+							<div class="lesson-type-badge" id="badge4"></div>
+						</div>
+						<button class="okButton" id="okButton1">Ok</button>
+					</div>
+
+					<div class="dayLessonSchedule" id="dayLessonSchedule2">
+						<div class="lessonColor" id="lessonColor2"></div>
+						<input class="lessonNameInput" id="lessonNameInput2" placeholder="Нэр" type="text" />
+						<input
+							class="lessonCodeInput"
+							id="lessonCodeInput2"
+							placeholder="Код"
+							type="text"
+						/>
+						<button class="okButton" id="okButton2">Ok</button>
+					</div>
+
+					<div class="dayLessonSchedule" id="dayLessonSchedule3">
+						<div class="lessonColor" id="lessonColor3"></div>
+						<input class="lessonNameInput" id="lessonNameInput3" placeholder="Нэр" type="text" />
+						<input
+							class="lessonCodeInput"
+							id="lessonCodeInput3"
+							placeholder="Код"
+							type="text"
+							type="text"
+						/>
+						<button class="okButton" data-button="button33" id="okButton3">Ok</button>
+					</div>
+
+					<div class="dayLessonSchedule" id="dayLessonSchedule4">
+						<div class="lessonColor" id="lessonColor4"></div>
+						<input class="lessonNameInput" id="lessonNameInput4" placeholder="Нэр" type="text" />
+						<input class="lessonCodeInput" id="lessonCodeInput4" placeholder="Код" type="text" />
+						<button class="okButton" id="okButton4">Ok</button>
+					</div>
+
+					<div class="dayLessonSchedule" id="dayLessonSchedule5">
+						<div class="lessonColor" id="lessonColor5"></div>
+						<input class="lessonNameInput" id="lessonNameInput5" placeholder="Нэр" type="text" />
+						<input class="lessonCodeInput" id="lessonCodeInput5" placeholder="Код" type="text" />
+						<button class="okButton" id="okButton5">Ok</button>
+					</div>
+
+					<div class="dayLessonSchedule" id="dayLessonSchedule6">
+						<div class="lessonColor" id="lessonColor6"></div>
+						<input class="lessonNameInput" id="lessonNameInput6" placeholder="Нэр" type="text" />
+						<input class="lessonCodeInput" id="lessonCodeInput6" placeholder="Код" type="text" />
+						<button class="okButton" id="okButton6">Ok</button>
+					</div>
+
+					<div class="dayLessonSchedule" id="dayLessonSchedule7">
+						<div class="lessonColor" id="lessonColor7"></div>
+						<input class="lessonNameInput" id="lessonNameInput7" placeholder="Нэр" type="text" />
+						<input class="lessonCodeInput" id="lessonCodeInput7" placeholder="Код" type="text" />
+						<button class="okButton" id="okButton7">Ok</button>
+					</div>
+				</div>
+				<div id="addDialog"></div>
+			</div>
+		</div>
+	</body>
+</html>
